@@ -32,21 +32,26 @@ const [respose,setRes]=useState([]);
           onBlur={handleBlur('name')}
           value={values.name}
           placeholder='Name'
+          style={styles.fields}
+
         />  
         <TextInput
           onChangeText={handleChange('email')}
           onBlur={handleBlur('email')}
           value={values.email}
           placeholder='Email'
+          style={styles.fields}
         />
          <TextInput
           onChangeText={handleChange('password')}
           onBlur={handleBlur('password')}
           value={values.password}
           placeholder='Password'
+          style={styles.fields}
+
         />
        
-        <Button onPress={handleSubmit} title="Register" />
+        <Button onPress={handleSubmit} title="Register" style={{marginTop:'12'}} />
       </View>
     )}
   </Formik>
@@ -67,6 +72,6 @@ const styles = StyleSheet.create({
   },
   fields:{
     marginTop:12,
-    padding:40
+    padding:10
   }
 });

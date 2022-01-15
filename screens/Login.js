@@ -29,15 +29,18 @@ const [response,setResponse]=useState([]);
           onBlur={handleBlur('email')}
           value={values.email}
           placeholder='Email'
+          style={styles.fields}
         />
          <TextInput
           onChangeText={handleChange('password')}
           onBlur={handleBlur('password')}
           value={values.password}
           placeholder='Password'
+          style={styles.fields}
+
         />
        
-        <Button onPress={handleSubmit} title="Login" />
+        <Button onPress={handleSubmit} title="Login" style={{marginTop:'12'}} />
       </View>
     )}
   </Formik>
@@ -58,6 +61,19 @@ const styles = StyleSheet.create({
   },
   fields:{
     marginTop:12,
-    padding:40
+    padding:10
+  },
+  btn:{
+    bottom: 2,
+        outline: 'none',
+        border: 'none',
+        padding: 3,
+        borderRadius: 10,
+        fontSize: 12,
+        fontWeight: 500,
+        width: 60,
+        color: '#fff',
+        backgroundColor: '#ff0000',
+        transition: 'all 0.3s ease-in-out'
   }
 });

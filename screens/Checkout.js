@@ -1,31 +1,32 @@
 // Formik x React Native example
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button, TextInput, View,StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import { OrderAPI } from '../services/Order';
+import { CartContext } from '../CartContext';
 import {
   ToastAndroid,
   Platform,
 } from 'react-native';
 
-
-
-
-
 const Checkout = ({navigation}) => {
 
+
   const [response,setResponse]=useState('');
+  const {items, getItemsCount, getTotalPrice} = useContext(CartContext);
+
 
   const notifyMessage=(msg)=> {
     if (Platform.OS === 'android') {
     ToastAndroid.show(msg, ToastAndroid.LONG)
     }
     }
+    console.log("check",items);
   
 
   const handleCheckout=async(values)=>{
     const order={
-      orderItems: values.length,
+      orderItems: items,
       shippingAddress: values.address,
       paymentMethod: 'stripe',
       itemsPrice: '3500',
@@ -65,12 +66,16 @@ const Checkout = ({navigation}) => {
           onBlur={handleBlur('email')}
           value={values.email}
           placeholder='Enter Email'
+          style={styles.fields}
+
         />
         <TextInput
           onChangeText={handleChange('number')}
           onBlur={handleBlur('number')}
           value={values.number}
           placeholder='Enter PhnoNumber'
+          style={styles.fields}
+
 
         />
         <TextInput
@@ -78,6 +83,8 @@ const Checkout = ({navigation}) => {
           onBlur={handleBlur('address')}
           value={values.address}
           placeholder='Enter Address'
+          style={styles.fields}
+
 
         />
         <Button onPress={handleSubmit} title="Place Order" />
@@ -97,5 +104,9 @@ const styles = StyleSheet.create({
     alignItems:'center'
     
    },
+   fields:{
+    marginTop:12,
+    padding:10
+  }
   });
   

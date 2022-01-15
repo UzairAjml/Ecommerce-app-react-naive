@@ -15,6 +15,7 @@ import { CartContext } from '../CartContext';
 export function ProductDetails({route}) {
   const { productId } = route.params;
   const [product, setProduct] = useState({});
+  const [orderType,setOrderType]=useState('');
   
   const { addItemToCart } = useContext(CartContext);
   
@@ -23,6 +24,12 @@ export function ProductDetails({route}) {
   });
   
   function onAddToCart() {
+    setOrderType('Buy')
+   addItemToCart(product.id);
+  }
+
+  function rentToCart() {
+    setOrderType('Rent')
     addItemToCart(product.id);
   }
   
@@ -37,10 +44,24 @@ export function ProductDetails({route}) {
           <Text style={styles.name}>{product.name}</Text>
           <Text style={styles.price}>$ {product.price}</Text>
           <Text style={styles.description}>{product.description}</Text>
+          <View
+              
+              style={styles.btnContainer}
+              >
             <Button
-            onPress={onAddToCart}
+            onPress={rentToCart}
             title="Rent"
             / >
+              <View
+              
+              style={styles.infoContainer}
+              >
+            <Button
+            onPress={onAddToCart}
+            title="Buy"
+            / >
+              </View>
+              </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -67,6 +88,13 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 16,
+  },
+  btnContainer: {
+    padding: 16,
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'space-between',
+    alignItems:"stretch"
   },
   name: {
     fontSize: 22,
