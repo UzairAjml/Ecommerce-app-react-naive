@@ -17,11 +17,10 @@ const Checkout = ({navigation}) => {
 
 
   const notifyMessage=(msg)=> {
-    if (Platform.OS === 'android') {
+    if (Platform.OS === 'web') {
     ToastAndroid.show(msg, ToastAndroid.LONG)
     }
     }
-    console.log("check",items);
   
 
   const handleCheckout=async(values)=>{
@@ -37,21 +36,21 @@ const Checkout = ({navigation}) => {
     }
 
     const res = await OrderAPI(order);
-    setResponse(res);
+    if(res){
+      setResponse(res);
+    }
+      
     
     
 
   }
 
-
   useEffect(()=>{
-
-    if(response){
-      notifyMessage('Order Succesfully Placed')
-      navigation.navigate('Products')
+    if(response!==''){
+    notifyMessage('Order Succesfully Placed')
+      navigation.navigate('login')
     }
-  },[response])
-
+  },[])
   
 
   return(

@@ -18,7 +18,6 @@ export const RegisterAPI= async (email,password,name) => {
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
             }
         });
-        localStorage.setItem('token',data.token);
         return data.token;   
     }
     catch(error){

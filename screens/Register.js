@@ -11,7 +11,7 @@ const [respose,setRes]=useState([]);
   const handleLogin=async(values)=>{
     const res= await RegisterAPI(values.email,values.password,values.name)
     setRes(res);
-    if(localStorage.getItem('token')){
+    if(res){
         navigation.navigate('Login')
     }
     }

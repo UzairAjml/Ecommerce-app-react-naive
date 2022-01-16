@@ -42,7 +42,7 @@ export function ProductDetails({route}) {
         />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{product.name}</Text>
-          <Text style={styles.price}>$ {product.price}</Text>
+          <Text style={styles.price}>Rs {product.price}</Text>
           <Text style={styles.description}>{product.description}</Text>
           <View
               
